@@ -14,6 +14,9 @@ $ npm install ffprobe
 
 ## Example Usage
 
+`ffprobe` is a *dual* API, supporting both node.js callbacks *AND* `Promise`s.
+
+### Callback API
 List the output of ffprobe for a media file in a convenient JSON format:
 
 ``` js
@@ -125,9 +128,41 @@ ffprobe('./file.mp4', { path: ffprobeStatic.path }, function (err, info) {
 });
 ```
 
+### Promise API
+List the output of ffprobe for a media file in a convenient JSON format:
+
+``` js
+var ffprobe = require('ffprobe'),
+    ffprobeStatic = require('ffprobe-static');
+
+ffprobe('./file.mp4', { path: ffprobeStatic.path })
+  .then(function (info) {
+    console.log(info);
+    /***
+    {
+        "streams": [
+            {
+                "index": 0,
+                "codec_name": "h264",
+                "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+                "profile": "High",
+
+                ...
+                }
+            }
+        ]
+    }
+     **/
+  })
+  .catch(function (err) {
+    console.error(err);
+  })
+});
+```
+
 ## API
 
-### `ffprobe(mediaFilePath, opts, cb)`
+### `ffprobe(mediaFilePath, opts, [cb])`
 
 * `mediaFilePath` - path to your audio / video / image that you want to get media
   info for.
@@ -136,5 +171,6 @@ ffprobe('./file.mp4', { path: ffprobeStatic.path }, function (err, info) {
     [`ffprobe-static`](https://github.com/joshwnj/ffprobe-static) to easily get
     a static binary that you can install with npm.
 * `cb(err, info)` - standard callback, with the info returned as a javascript
-  object.
+  object. NB: If the `cb` parameter is not provided, a `Promise` will be returned
+  allowing chained `then()`, `catch()` methods.
 
