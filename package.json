@@ -1,0 +1,36 @@
+{
+  "name": "ffprobe",
+  "version": "1.0.0",
+  "description": "Use ffprobe to get info from media files and return as JSON",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eugeneware/ffprobe"
+  },
+  "keywords": [
+    "json",
+    "ffmpeg",
+    "ffprobe",
+    "media",
+    "video",
+    "audio",
+    "image",
+    "images"
+  ],
+  "author": "Eugene Ware <eugene@noblesamurai.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/eugeneware/ffprobe/issues"
+  },
+  "dependencies": {
+    "JSONStream": "^1.0.7"
+  },
+  "devDependencies": {
+    "expect.js": "~0.3.0",
+    "ffprobe-static": "^1.1.0",
+    "mocha": "~2.1.0"
+  }
+}
