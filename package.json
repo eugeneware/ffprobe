@@ -1,5 +1,5 @@
 {
-  "name": "ffprobe",
+  "name": "ffprobe-electron",
   "version": "1.1.0",
   "description": "Use ffprobe to get info from media files and return as JSON",
   "main": "index.js",
