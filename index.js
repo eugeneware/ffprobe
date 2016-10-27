@@ -2,7 +2,7 @@ var stream = require('stream'),
     JSONStream = require('JSONStream'),
     Deferred = require('deferential'),
     bl = require('bl'),
-    spawn = require('child_process').spawn;
+    execFile = require('child_process').execFile;
 
 module.exports = getInfo;
 function getInfo(filePath, opts, cb) {
@@ -13,7 +13,7 @@ function getInfo(filePath, opts, cb) {
   var info;
   var stderr;
 
-  var ffprobe = spawn(opts.path, params);
+  var ffprobe = execFile(opts.path, params);
   ffprobe.once('close', function (code) {
     if (!code) {
       d.resolve(info);
