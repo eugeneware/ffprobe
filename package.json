@@ -1,6 +1,6 @@
 {
   "name": "ffprobe-electron",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Use ffprobe to get info from media files and return as JSON",
   "main": "index.js",
   "scripts": {
