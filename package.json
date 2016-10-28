@@ -26,9 +26,7 @@
     "url": "https://github.com/eugeneware/ffprobe/issues"
   },
   "dependencies": {
-    "JSONStream": "^1.0.7",
-    "bl": "^1.0.0",
-    "deferential": "^1.0.0"
+    "promise": "*"
   },
   "devDependencies": {
     "expect.js": "~0.3.0",

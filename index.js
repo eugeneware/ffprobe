@@ -1,4 +1,5 @@
 var execFile = require('child_process').execFile
+var Promise = require('promise/lib/es6-extensions')
 
 module.exports = function (filePath, opts, cb) {
   var params = []
