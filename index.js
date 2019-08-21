@@ -8,8 +8,7 @@ module.exports = getInfo;
 function getInfo(filePath, opts, cb) {
 
   if(opts.sync){
-    getInfoSync(filePath, opts, cb);
-    return;
+    return getInfoSync(filePath, opts);
   }
 
   var params = [];
@@ -57,5 +56,5 @@ function getInfoSync(filePath, opts, cb) {
     stderr = new Error(errMsg);
   }
 
-  cb(stderr, info);
+  return { data: info, error: stderr }
 }
