@@ -1,11 +1,17 @@
-var stream = require('stream'),
-    JSONStream = require('JSONStream'),
+var JSONStream = require('JSONStream'),
     Deferred = require('deferential'),
     bl = require('bl'),
     spawn = require('child_process').spawn;
+    spawnSync = require('child_process').spawnSync;
 
 module.exports = getInfo;
 function getInfo(filePath, opts, cb) {
+
+  if(opts.sync){
+    getInfoSync(filePath, opts, cb);
+    return;
+  }
+
   var params = [];
   params.push('-show_streams', '-print_format', 'json', filePath);
 
@@ -34,4 +40,22 @@ function getInfo(filePath, opts, cb) {
     });
 
   return d.nodeify(cb);
+}
+
+function getInfoSync(filePath, opts, cb) {
+  var params = [];
+  params.push('-show_streams', '-print_format', 'json', filePath);
+
+  var info;
+  var stderr;
+  var ffprobe = spawnSync(opts.path, params);
+
+  info = JSON.parse(ffprobe.stdout);
+
+  if(Object.keys(info).length == 0) {
+    var errMsg = ffprobe.stderr.toString().split('\n').filter(Boolean).pop();
+    stderr = new Error(errMsg);
+  }
+
+  cb(stderr, info);
 }
