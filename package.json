@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "JSONStream": "^1.0.7",
-    "bl": "^1.0.0",
+    "bl": "^4.0.3",
     "deferential": "^1.0.0"
   },
   "devDependencies": {
